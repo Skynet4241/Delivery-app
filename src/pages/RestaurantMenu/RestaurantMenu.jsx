@@ -2,8 +2,8 @@ import { getRestaurantMenu } from 'components/API/getRestaurantMenu';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MenuItemWrap, MenuList } from './RestaurantMenu.styled';
-import { addToOrder } from 'components/utils/addToOrder';
-import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
+import { addToOrder } from 'components/utils/AddToOrder';
+import { removeItemFromOrder } from 'components/utils/RemoveItemFromOrder';
 
 export const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState([]);

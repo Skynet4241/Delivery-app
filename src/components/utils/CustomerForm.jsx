@@ -18,6 +18,12 @@ export const CustomerForm = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit(customerData);
+    setCustomerData({
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+    });
   };
 
   return (

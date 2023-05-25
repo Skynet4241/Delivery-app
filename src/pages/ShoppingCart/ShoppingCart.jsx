@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { addToOrder } from 'components/utils/addToOrder';
-import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
+import { addToOrder } from 'components/utils/AddToOrder';
+import { removeItemFromOrder } from 'components/utils/RemoveItemFromOrder';
 import { Button, OrderList } from './ShoppingCart.styled';
-import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
+import { decreaseItemFromOrder } from 'components/utils/DecreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
+import { createOrder } from 'components/API/createOrder ';
+import { CustomerFormSubmit } from 'components/utils/CustomerFormSubmit';
 
 export const ShoppingCart = () => {
   const savedOrder = localStorage.getItem('Order');
@@ -62,11 +64,19 @@ export const ShoppingCart = () => {
       0
     );
   };
+
   const formatCurrency = value => {
     return `${value} uah`;
   };
+
   const handleCustomerFormSubmit = customerData => {
-    console.log(customerData);
+    CustomerFormSubmit(
+      customerData,
+      order,
+      getTotalAmount,
+      createOrder,
+      clearCart
+    );
   };
 
   return (
@@ -95,27 +105,35 @@ export const ShoppingCart = () => {
           ))}
         </OrderList>
       )}
-      <table>
-        <thead>
-          <tr>
-            <th>Total Items</th>
-            <th>Total Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{getTotalQuantity()}</td>
-            <td>{formatCurrency(getTotalAmount())}</td>
-          </tr>
-        </tbody>
-      </table>
-      <CustomerForm onSubmit={handleCustomerFormSubmit} />
+      {order.length === 0 ? null : (
+        <table>
+          <thead>
+            <tr>
+              <th>Total Items</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{getTotalQuantity()}</td>
+              <td>{formatCurrency(getTotalAmount())}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {order.length === 0 ? null : (
+        <CustomerForm onSubmit={handleCustomerFormSubmit} />
+      )}
+
       <Button type="button" onClick={handleSaveChanges}>
         Save Changes
       </Button>
-      <Button type="button" onClick={clearCart}>
-        Clear
-      </Button>
+
+      {order.length === 0 ? null : (
+        <Button type="button" onClick={clearCart}>
+          Clear
+        </Button>
+      )}
     </>
   );
 };
