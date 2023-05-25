@@ -66,6 +66,7 @@ export const RestaurantMenu = () => {
                   height="200px"
                 />
                 <p>{item.name}</p>
+                <p>{item.price}</p>
                 <p>Quantity: {getQuantity(item._id)}</p>
                 <div>
                   <button

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
-import { OrderList } from './ShoppingCart.styled';
+import { Button, OrderList } from './ShoppingCart.styled';
 import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
+import { CustomerForm } from 'components/utils/CustomerForm';
 
 export const ShoppingCart = () => {
   const savedOrder = localStorage.getItem('Order');
@@ -51,6 +52,23 @@ export const ShoppingCart = () => {
     return quantity[itemId] || 0;
   };
 
+  const getTotalQuantity = () => {
+    return order.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getTotalAmount = () => {
+    return order.reduce(
+      (total, item) => total + item.quantity * parseFloat(item.price),
+      0
+    );
+  };
+  const formatCurrency = value => {
+    return `${value} uah`;
+  };
+  const handleCustomerFormSubmit = customerData => {
+    console.log(customerData);
+  };
+
   return (
     <>
       <h2>Shopping Cart</h2>
@@ -77,12 +95,27 @@ export const ShoppingCart = () => {
           ))}
         </OrderList>
       )}
-      <button type="button" onClick={handleSaveChanges}>
+      <table>
+        <thead>
+          <tr>
+            <th>Total Items</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{getTotalQuantity()}</td>
+            <td>{formatCurrency(getTotalAmount())}</td>
+          </tr>
+        </tbody>
+      </table>
+      <CustomerForm onSubmit={handleCustomerFormSubmit} />
+      <Button type="button" onClick={handleSaveChanges}>
         Save Changes
-      </button>
-      <button type="button" onClick={clearCart}>
+      </Button>
+      <Button type="button" onClick={clearCart}>
         Clear
-      </button>
+      </Button>
     </>
   );
 };
