@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 import { Button, OrderList } from './ShoppingCart.styled';
-import { decreaseItemFromOrder } from 'components/utils/DecreaseItemFromOrder';
+import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
 import { createOrder } from 'components/API/createOrder ';
 import { CustomerFormSubmit } from 'components/utils/CustomerFormSubmit';
