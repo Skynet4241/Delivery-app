@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { addToOrder } from 'components/utils/AddToOrder';
+import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/RemoveItemFromOrder';
 import { Button, OrderList } from './ShoppingCart.styled';
 import { decreaseItemFromOrder } from 'components/utils/DecreaseItemFromOrder';
