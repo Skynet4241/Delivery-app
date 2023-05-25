@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 import { OrderList } from './ShoppingCart.styled';
+import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
 
 export const ShoppingCart = () => {
   const savedOrder = localStorage.getItem('Order');
@@ -20,22 +21,14 @@ export const ShoppingCart = () => {
   };
 
   const handleDecrease = item => {
-    const updatedOrder = [...order];
-    const updatedQuantity = { ...quantity };
-
-    if (updatedQuantity[item._id] === 1) {
-      removeItemFromOrder(item._id, setOrder, order);
-      delete updatedQuantity[item._id];
-    } else {
-      updatedOrder.forEach(orderItem => {
-        if (orderItem._id === item._id) {
-          orderItem.quantity -= 1;
-          updatedQuantity[item._id] -= 1;
-        }
-      });
-    }
-
-    setQuantity(updatedQuantity);
+    decreaseItemFromOrder(
+      order,
+      quantity,
+      item,
+      removeItemFromOrder,
+      setOrder,
+      setQuantity
+    );
   };
 
   const handleIncrease = item => {
