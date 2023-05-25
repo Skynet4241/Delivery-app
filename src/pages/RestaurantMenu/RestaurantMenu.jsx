@@ -33,7 +33,7 @@ export const RestaurantMenu = () => {
   }, []);
 
   const handleAddToOrder = item => {
-    addToOrder(item, setOrder, order);
+    addToOrder(item, setOrder, order, item.restaurant);
   };
 
   const handleRemoveItemFromOrder = item => {
