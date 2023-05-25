@@ -4,8 +4,10 @@ import {
   HeaderButton,
   HeaderLogo,
   HeaderLogoFirst,
+  HeaderNavText,
   HeaderStyle,
   HeaderWrap,
+  Nav,
   NavWrap,
 } from './Header.styled';
 import { PAGE_NAMES } from 'components/router/path';
@@ -19,16 +21,23 @@ export const Header = () => {
             <HeaderLogo to={PAGE_NAMES.shop}>
               <HeaderLogoFirst>Delivery</HeaderLogoFirst>App
             </HeaderLogo>
-            <nav>
+            <Nav>
               <NavWrap>
                 <NavLink to={PAGE_NAMES.shop}>
-                  <HeaderButton>Shop</HeaderButton>
-                </NavLink>
-                <NavLink to={PAGE_NAMES.shopping_cart}>
-                  <HeaderButton>Shopping Cart</HeaderButton>
+                  <HeaderNavText>Shop</HeaderNavText>
                 </NavLink>
               </NavWrap>
-            </nav>
+              <NavWrap>
+                <NavLink to={PAGE_NAMES.shopping_cart}>
+                  <img
+                    src="https://ninjasushi.com.ua/img/cart.svg"
+                    alt=""
+                    width="55px"
+                    height="55px"
+                  />
+                </NavLink>
+              </NavWrap>
+            </Nav>
           </HeaderWrap>
         </Container>
       </HeaderStyle>

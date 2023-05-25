@@ -1,7 +1,7 @@
 import { getRestaurantList } from 'components/API/getRestaurantList';
 import { useEffect, useState } from 'react';
-import { ShopList } from './Shop.styled';
-import { NavLink, useLocation } from 'react-router-dom';
+import { ShopList, ShopWrap } from './Shop.styled';
+import { useLocation } from 'react-router-dom';
 
 export const Shop = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -31,15 +31,17 @@ export const Shop = () => {
         <ShopList>
           {restaurant.map(item => (
             <li key={item._id}>
-              <NavLink to={`${location.pathname}/${item.name}`}>
-                <img
-                  src={item.image}
-                  alt="item.name"
-                  width="250px"
-                  height="200px"
-                />
-                <p>{item.name}</p>
-              </NavLink>
+              <div>
+                <ShopWrap to={`${location.pathname}/${item.name}`}>
+                  <img
+                    src={item.image}
+                    alt="item.name"
+                    width="240"
+                    height="240"
+                  />
+                  <p>{item.name}</p>
+                </ShopWrap>
+              </div>
             </li>
           ))}
         </ShopList>

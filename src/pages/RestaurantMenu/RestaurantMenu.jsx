@@ -1,7 +1,19 @@
 import { getRestaurantMenu } from 'components/API/getRestaurantMenu';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { MenuItemWrap, MenuList } from './RestaurantMenu.styled';
+import {
+  Button,
+  ButtonAddToOrder,
+  ButtonAddToOrderText,
+  ButtonIcon,
+  ButtonText,
+  ButtonWrap,
+  ItemTitle,
+  ItemTitleBlock,
+  MenuBlock,
+  MenuItemWrap,
+  MenuList,
+} from './RestaurantMenu.styled';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 
@@ -50,7 +62,7 @@ export const RestaurantMenu = () => {
   };
 
   return (
-    <>
+    <MenuBlock>
       <h2>Restaurant Menu</h2>
       {isLoading ? (
         <p>Loading...</p>
@@ -65,28 +77,31 @@ export const RestaurantMenu = () => {
                   width="250px"
                   height="200px"
                 />
-                <p>{item.name}</p>
-                <p>{item.price}</p>
-                <p>Quantity: {getQuantity(item._id)}</p>
-                <div>
-                  <button
+                <ItemTitleBlock>
+                  <h5>{item.name}</h5>
+                  <ItemTitle>{item.price}</ItemTitle>
+                </ItemTitleBlock>
+
+                <ButtonWrap>
+                  <Button
                     type="button"
                     onClick={() => handleRemoveItemFromOrder(item._id)}
                   >
-                    -
-                  </button>
-                  <button type="button" onClick={() => handleAddToOrder(item)}>
-                    +
-                  </button>
-                </div>
+                    <ButtonIcon>-</ButtonIcon>
+                  </Button>
+                  <ButtonText>{getQuantity(item._id)}</ButtonText>
+                  <Button type="button" onClick={() => handleAddToOrder(item)}>
+                    <ButtonIcon>+</ButtonIcon>
+                  </Button>
+                </ButtonWrap>
               </MenuItemWrap>
             </li>
           ))}
         </MenuList>
       )}
-      <button type="button" onClick={handleSaveOrder}>
-        Save Order
-      </button>
-    </>
+      <ButtonAddToOrder type="button" onClick={handleSaveOrder}>
+        <ButtonAddToOrderText>ADD TO ORDER</ButtonAddToOrderText>
+      </ButtonAddToOrder>
+    </MenuBlock>
   );
 };
