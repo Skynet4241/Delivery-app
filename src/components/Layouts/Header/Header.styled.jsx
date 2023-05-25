@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderStyle = styled.header`
@@ -8,8 +9,7 @@ export const HeaderWrap = styled.div`
   display: flex;
   padding: 22px 0;
 `;
-
-export const HeaderLogo = styled.a`
+export const HeaderLogo = styled(NavLink)`
   display: block;
   font-weight: 700;
   font-size: 26px;

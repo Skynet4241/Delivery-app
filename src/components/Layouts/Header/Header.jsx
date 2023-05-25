@@ -16,7 +16,7 @@ export const Header = () => {
       <HeaderStyle>
         <Container>
           <HeaderWrap>
-            <HeaderLogo href="*">
+            <HeaderLogo to={PAGE_NAMES.shop}>
               <HeaderLogoFirst>Delivery</HeaderLogoFirst>App
             </HeaderLogo>
             <nav>
