@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MenuItemWrap, MenuList } from './RestaurantMenu.styled';
 import { addToOrder } from 'components/utils/addToOrder';
-import { removeItemFromOrder } from 'components/utils/RemoveItemFromOrder';
+import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 
 export const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState([]);

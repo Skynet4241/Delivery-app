@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
-import { removeItemFromOrder } from 'components/utils/RemoveItemFromOrder';
+import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 import { Button, OrderList } from './ShoppingCart.styled';
 import { decreaseItemFromOrder } from 'components/utils/DecreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
