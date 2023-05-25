@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
-import { Button, OrderList } from './ShoppingCart.styled';
+import {
+  Button,
+  ButtonCounter,
+  ButtonIcon,
+  ButtonWrap,
+  CartItemWrap,
+  ItemTitle,
+  ItemTitleBlock,
+  OrderList,
+  ProductTitle,
+} from './ShoppingCart.styled';
 import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
 import { createOrder } from 'components/API/createOrder ';
@@ -88,19 +98,29 @@ export const ShoppingCart = () => {
         <OrderList>
           {order.map(item => (
             <li key={item._id}>
-              <div>
+              <CartItemWrap>
                 <img
                   src={item.image}
                   alt={item.name}
                   width="250px"
                   height="200px"
                 />
-                <p>{item.name}</p>
-                <p>Quantity: {getQuantity(item._id)}</p>
-                <button onClick={() => handleDecrease(item)}>-</button>
-                <button onClick={() => handleIncrease(item)}>+</button>
+                <ItemTitleBlock>
+                  <ProductTitle>{item.name}</ProductTitle>
+                  <ItemTitle>{item.price}</ItemTitle>
+                </ItemTitleBlock>
+                <ButtonWrap>
+                  <ButtonCounter onClick={() => handleDecrease(item)}>
+                    <ButtonIcon>-</ButtonIcon>
+                  </ButtonCounter>
+                  <p>{getQuantity(item._id)}</p>
+                  <ButtonCounter onClick={() => handleIncrease(item)}>
+                    <ButtonIcon>+</ButtonIcon>
+                  </ButtonCounter>
+                </ButtonWrap>
+
                 <button onClick={() => handleDelete(item)}>Delete</button>
-              </div>
+              </CartItemWrap>
             </li>
           ))}
         </OrderList>

@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Container } from 'utils/Container';
 import {
-  HeaderButton,
   HeaderLogo,
   HeaderLogoFirst,
   HeaderNavText,

@@ -37,6 +37,11 @@ export const ItemTitleBlock = styled.div`
   align-items: center;
   margin: 10px 0;
 `;
+export const ProductTitle = styled.h5`
+  font-size: 18px;
+  color: inherit;
+`;
+
 export const ItemTitle = styled.h5`
   font-size: 20px;
   color: #ee6344;

@@ -12,7 +12,7 @@ export const decreaseItemFromOrder = (
   if (updatedQuantity[item._id] === 1) {
     removeItemFromOrder(item._id, setOrder, order);
     delete updatedQuantity[item._id];
-  } else {
+  } else if (updatedQuantity[item._id] > 1) {
     updatedOrder.forEach(orderItem => {
       if (orderItem._id === item._id) {
         orderItem.quantity -= 1;

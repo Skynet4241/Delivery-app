@@ -13,6 +13,7 @@ import {
   MenuBlock,
   MenuItemWrap,
   MenuList,
+  ProductTitle,
 } from './RestaurantMenu.styled';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
@@ -78,7 +79,7 @@ export const RestaurantMenu = () => {
                   height="200px"
                 />
                 <ItemTitleBlock>
-                  <h5>{item.name}</h5>
+                  <ProductTitle>{item.name}</ProductTitle>
                   <ItemTitle>{item.price}</ItemTitle>
                 </ItemTitleBlock>
 
