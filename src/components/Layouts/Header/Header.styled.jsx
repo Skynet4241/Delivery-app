@@ -49,3 +49,9 @@ export const HeaderNavText = styled.p`
     color: #ee6344;
   }
 `;
+export const ShoppingCart = styled(NavLink)`
+  transition: scale 0.25s ease-in-out;
+  &:hover {
+    scale: 1.21;
+  }
+`;

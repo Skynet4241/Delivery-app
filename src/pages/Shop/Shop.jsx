@@ -12,6 +12,7 @@ import {
 } from './Shop.styled';
 import { useLocation } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
+import { Container } from 'utils/Container';
 
 export const Shop = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -34,34 +35,36 @@ export const Shop = () => {
 
   return (
     <>
-      <ShopTitle>Shops</ShopTitle>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ShopPageWrap>
-          <ShopList>
-            {restaurant.map(item => (
-              <li key={item._id}>
-                <ShopItemWrap>
-                  <ShopWrap to={`${location.pathname}/${item.name}`}>
-                    <ShopItemImageWrap>
-                      <img
-                        src={item.image}
-                        alt="item.name"
-                        width="240"
-                        height="240"
-                      />
-                    </ShopItemImageWrap>
-                    <ShopItemIfoWrap>
-                      <ShopItemIfoText>{item.name}</ShopItemIfoText>
-                    </ShopItemIfoWrap>
-                  </ShopWrap>
-                </ShopItemWrap>
-              </li>
-            ))}
-          </ShopList>
-        </ShopPageWrap>
-      )}
+      <Container>
+        <ShopTitle>Shops</ShopTitle>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ShopPageWrap>
+            <ShopList>
+              {restaurant.map(item => (
+                <li key={item._id}>
+                  <ShopItemWrap>
+                    <ShopWrap to={`${location.pathname}/${item.name}`}>
+                      <ShopItemImageWrap>
+                        <img
+                          src={item.image}
+                          alt="item.name"
+                          width="240"
+                          height="240"
+                        />
+                      </ShopItemImageWrap>
+                      <ShopItemIfoWrap>
+                        <ShopItemIfoText>{item.name}</ShopItemIfoText>
+                      </ShopItemIfoWrap>
+                    </ShopWrap>
+                  </ShopItemWrap>
+                </li>
+              ))}
+            </ShopList>
+          </ShopPageWrap>
+        )}
+      </Container>
     </>
   );
 };

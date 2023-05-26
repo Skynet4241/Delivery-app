@@ -17,8 +17,10 @@ export const ShopTitle = styled.h2`
 
 export const ShopList = styled.ul`
   display: flex;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center; /* Центрирует элементы по горизонтали */
   gap: 20px;
+  align-items: flex-end;
 `;
 
 export const ShopWrap = styled(NavLink)`
@@ -27,9 +29,9 @@ export const ShopWrap = styled(NavLink)`
   align-items: center;
 `;
 export const ShopItemWrap = styled.div`
+  flex: 1 0 240px; /* Позволяет каждому элементу магазина расширяться и сжиматься при сохранении ширины 240px */
   backface-visibility: hidden;
   border-radius: 10px;
-  /* height: 100%; */
   overflow: hidden;
   transform: translateZ(0);
 `;

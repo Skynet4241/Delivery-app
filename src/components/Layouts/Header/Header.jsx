@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { Container } from 'utils/Container';
 import {
   HeaderLogo,
   HeaderLogoFirst,
@@ -8,8 +7,10 @@ import {
   HeaderWrap,
   Nav,
   NavWrap,
+  ShoppingCart,
 } from './Header.styled';
 import { PAGE_NAMES } from 'components/router/path';
+import { Container } from 'utils/Container';
 
 export const Header = () => {
   return (
@@ -27,14 +28,14 @@ export const Header = () => {
                 </NavLink>
               </NavWrap>
               <NavWrap>
-                <NavLink to={PAGE_NAMES.shopping_cart}>
+                <ShoppingCart to={PAGE_NAMES.shopping_cart}>
                   <img
                     src="https://ninjasushi.com.ua/img/cart.svg"
                     alt=""
                     width="55px"
                     height="55px"
                   />
-                </NavLink>
+                </ShoppingCart>
               </NavWrap>
             </Nav>
           </HeaderWrap>

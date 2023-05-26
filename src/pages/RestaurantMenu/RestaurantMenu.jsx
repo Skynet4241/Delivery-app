@@ -19,6 +19,7 @@ import {
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 import { Loader } from 'components/Loader/Loader';
+import { Container } from 'utils/Container';
 
 export const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -66,52 +67,54 @@ export const RestaurantMenu = () => {
 
   return (
     <>
-      <RestaurantMenuTitle>Restaurant Menu</RestaurantMenuTitle>{' '}
-      <MenuBlock>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <MenuList>
-            {restaurant.map(item => (
-              <li key={item._id}>
-                <MenuItemWrap>
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    width="250px"
-                    height="200px"
-                  />
-                  <ItemTitleBlock>
-                    <ProductTitle>{item.name}</ProductTitle>
-                    <ItemTitle>{item.price}</ItemTitle>
-                  </ItemTitleBlock>
+      <Container>
+        <RestaurantMenuTitle>Restaurant Menu</RestaurantMenuTitle>{' '}
+        <MenuBlock>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <MenuList>
+              {restaurant.map(item => (
+                <li key={item._id}>
+                  <MenuItemWrap>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      width="250px"
+                      height="200px"
+                    />
+                    <ItemTitleBlock>
+                      <ProductTitle>{item.name}</ProductTitle>
+                      <ItemTitle>{item.price}</ItemTitle>
+                    </ItemTitleBlock>
 
-                  <ButtonWrap>
-                    <Button
-                      type="button"
-                      onClick={() => handleRemoveItemFromOrder(item._id)}
-                    >
-                      <ButtonIcon>-</ButtonIcon>
-                    </Button>
-                    <ButtonText>{getQuantity(item._id)}</ButtonText>
-                    <Button
-                      type="button"
-                      onClick={() => handleAddToOrder(item)}
-                    >
-                      <ButtonIcon>+</ButtonIcon>
-                    </Button>
-                  </ButtonWrap>
-                </MenuItemWrap>
-              </li>
-            ))}
-          </MenuList>
-        )}
-        {isLoading ? null : (
-          <ButtonAddToOrder type="button" onClick={handleSaveOrder}>
-            <ButtonAddToOrderText>ADD TO ORDER</ButtonAddToOrderText>
-          </ButtonAddToOrder>
-        )}
-      </MenuBlock>
+                    <ButtonWrap>
+                      <Button
+                        type="button"
+                        onClick={() => handleRemoveItemFromOrder(item._id)}
+                      >
+                        <ButtonIcon>-</ButtonIcon>
+                      </Button>
+                      <ButtonText>{getQuantity(item._id)}</ButtonText>
+                      <Button
+                        type="button"
+                        onClick={() => handleAddToOrder(item)}
+                      >
+                        <ButtonIcon>+</ButtonIcon>
+                      </Button>
+                    </ButtonWrap>
+                  </MenuItemWrap>
+                </li>
+              ))}
+            </MenuList>
+          )}
+          {isLoading ? null : (
+            <ButtonAddToOrder type="button" onClick={handleSaveOrder}>
+              <ButtonAddToOrderText>ADD TO ORDER</ButtonAddToOrderText>
+            </ButtonAddToOrder>
+          )}
+        </MenuBlock>
+      </Container>
     </>
   );
 };

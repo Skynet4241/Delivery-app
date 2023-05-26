@@ -134,3 +134,15 @@ export const FormTitle = styled.h2`
   color: inherit;
   margin-bottom: 20px;
 `;
+
+export const CartEmptyWrap = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const CartEmptyText = styled.h5`
+  font-size: 18px;
+  font-weight: 700;
+  color: inherit;
+`;
