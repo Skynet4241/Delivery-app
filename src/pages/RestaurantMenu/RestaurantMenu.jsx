@@ -14,6 +14,8 @@ import {
   MenuItemWrap,
   MenuList,
   ProductTitle,
+  QuantityOfOrderedItems,
+  QuantityOfOrderedItemsSpan,
   RestaurantMenuTitle,
 } from './RestaurantMenu.styled';
 import { addToOrder } from 'components/utils/addToOrder';
@@ -25,6 +27,7 @@ export const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState([]);
+  const [totalItems, setTotalItems] = useState(0); // Добавленное состояние для счетчика
   const { shop } = useParams();
 
   useEffect(() => {
@@ -44,7 +47,9 @@ export const RestaurantMenu = () => {
   useEffect(() => {
     const savedOrder = localStorage.getItem('Order');
     if (savedOrder) {
-      setOrder(JSON.parse(savedOrder));
+      const parsedOrder = JSON.parse(savedOrder);
+      setOrder(parsedOrder);
+      updateTotalItems(parsedOrder);
     }
   }, []);
 
@@ -58,6 +63,7 @@ export const RestaurantMenu = () => {
 
   const handleSaveOrder = () => {
     localStorage.setItem('Order', JSON.stringify(order));
+    updateTotalItems(order);
   };
 
   const getQuantity = itemId => {
@@ -65,10 +71,38 @@ export const RestaurantMenu = () => {
     return item ? item.quantity : 0;
   };
 
+  const updateTotalItems = updatedOrder => {
+    const totalItems = updatedOrder.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    setTotalItems(totalItems);
+  };
+
+  const getCurrentShopFromOrder = () => {
+    if (order.length > 0) {
+      const firstOrderItem = order[0];
+      return firstOrderItem.restaurant;
+    }
+    return '';
+  };
+  const currentShopFromOrder = getCurrentShopFromOrder();
+
   return (
     <>
       <Container>
         <RestaurantMenuTitle>Restaurant Menu</RestaurantMenuTitle>{' '}
+        {totalItems > 0 && (
+          <div>
+            <QuantityOfOrderedItems>
+              Quantity of ordered items in {currentShopFromOrder}:{' '}
+              <QuantityOfOrderedItemsSpan>
+                {totalItems}
+              </QuantityOfOrderedItemsSpan>
+            </QuantityOfOrderedItems>
+            <span>You can only order at one shop</span>
+          </div>
+        )}
         <MenuBlock>
           {isLoading ? (
             <Loader />

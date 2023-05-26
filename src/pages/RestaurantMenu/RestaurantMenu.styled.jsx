@@ -104,3 +104,13 @@ export const ButtonAddToOrderText = styled.p`
   font-size: 16px;
   font-weight: 600;
 `;
+
+export const QuantityOfOrderedItems = styled.h5`
+  font-size: 18px;
+  font-weight: 600;
+  color: blue;
+`;
+
+export const QuantityOfOrderedItemsSpan = styled.span`
+  color: red;
+`;
