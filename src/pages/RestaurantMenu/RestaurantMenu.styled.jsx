@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
+export const RestaurantMenuTitle = styled.h2`
+  text-align: center;
+  margin: 20px 0;
+  font-size: 30px;
+  font-weight: 800;
+`;
+
 export const MenuBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  padding: 20px 0;
   align-items: center;
 `;
 

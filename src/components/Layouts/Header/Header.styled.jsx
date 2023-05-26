@@ -25,7 +25,6 @@ export const HeaderLogoFirst = styled.span`
 `;
 export const Nav = styled.nav`
   display: flex;
-  gap: 15px;
   flex-grow: 1;
   justify-content: space-between;
 `;

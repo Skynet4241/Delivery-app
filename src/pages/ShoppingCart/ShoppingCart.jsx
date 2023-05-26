@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { addToOrder } from 'components/utils/addToOrder';
 import { removeItemFromOrder } from 'components/utils/removeItemFromOrder';
 import {
-  Button,
   ButtonCounter,
+  ButtonDelete,
   ButtonIcon,
   ButtonWrap,
   CartItemWrap,
+  FormTitle,
   ItemTitle,
   ItemTitleBlock,
   OrderList,
+  OrderListWrap,
   ProductTitle,
+  ShoppingCartTitle,
+  ShoppingCartWrap,
+  TotalAmount,
+  TotalAmountSpan,
 } from './ShoppingCart.styled';
 import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
@@ -62,10 +68,6 @@ export const ShoppingCart = () => {
     return quantity[itemId] || 0;
   };
 
-  const getTotalQuantity = () => {
-    return order.reduce((total, item) => total + item.quantity, 0);
-  };
-
   const getTotalAmount = () => {
     return order.reduce(
       (total, item) => total + item.quantity * parseFloat(item.price),
@@ -91,64 +93,63 @@ export const ShoppingCart = () => {
   }, [order]);
   return (
     <>
-      <h2>Shopping Cart</h2>
-      {order.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <OrderList>
-          {order.map(item => (
-            <li key={item._id}>
-              <CartItemWrap>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  width="250px"
-                  height="200px"
-                />
-                <ItemTitleBlock>
-                  <ProductTitle>{item.name}</ProductTitle>
-                  <ItemTitle>{item.price}</ItemTitle>
-                </ItemTitleBlock>
-                <ButtonWrap>
-                  <ButtonCounter onClick={() => handleDecrease(item)}>
-                    <ButtonIcon>-</ButtonIcon>
-                  </ButtonCounter>
-                  <p>{getQuantity(item._id)}</p>
-                  <ButtonCounter onClick={() => handleIncrease(item)}>
-                    <ButtonIcon>+</ButtonIcon>
-                  </ButtonCounter>
-                </ButtonWrap>
+      <ShoppingCartTitle>Shopping Cart</ShoppingCartTitle>
+      <ShoppingCartWrap>
+        {order.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <OrderListWrap>
+            <OrderList>
+              {order.map(item => (
+                <li key={item._id}>
+                  <CartItemWrap>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      width="250px"
+                      height="200px"
+                    />
+                    <ItemTitleBlock>
+                      <ProductTitle>{item.name}</ProductTitle>
+                      <ItemTitle>{item.price}</ItemTitle>
+                    </ItemTitleBlock>
+                    <ButtonWrap>
+                      <ButtonCounter onClick={() => handleDecrease(item)}>
+                        <ButtonIcon>-</ButtonIcon>
+                      </ButtonCounter>
+                      <p>{getQuantity(item._id)}</p>
+                      <ButtonCounter onClick={() => handleIncrease(item)}>
+                        <ButtonIcon>+</ButtonIcon>
+                      </ButtonCounter>
+                    </ButtonWrap>
+                    <ButtonDelete onClick={() => handleDelete(item)}>
+                      <img
+                        src="https://svgsilh.com/svg/155299.svg"
+                        alt="Delete"
+                        width="30px"
+                        height="30px"
+                      />
+                    </ButtonDelete>
+                  </CartItemWrap>
+                </li>
+              ))}
+            </OrderList>
+          </OrderListWrap>
+        )}
 
-                <button onClick={() => handleDelete(item)}>Delete</button>
-              </CartItemWrap>
-            </li>
-          ))}
-        </OrderList>
-      )}
-      {order.length === 0 ? null : (
-        <table>
-          <thead>
-            <tr>
-              <th>Total Items</th>
-              <th>Total Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{getTotalQuantity()}</td>
-              <td>{formatCurrency(getTotalAmount())}</td>
-            </tr>
-          </tbody>
-        </table>
-      )}
-      {order.length === 0 ? null : (
-        <CustomerForm onSubmit={handleCustomerFormSubmit} />
-      )}
-      {order.length === 0 ? null : (
-        <Button type="button" onClick={clearCart}>
-          Clear
-        </Button>
-      )}
+        {order.length === 0 ? null : (
+          <div>
+            <TotalAmount>
+              Total Amount:{' '}
+              <TotalAmountSpan>
+                {formatCurrency(getTotalAmount())}
+              </TotalAmountSpan>
+            </TotalAmount>
+            <FormTitle>Personal information</FormTitle>
+            <CustomerForm onSubmit={handleCustomerFormSubmit} />
+          </div>
+        )}
+      </ShoppingCartWrap>
     </>
   );
 };

@@ -1,7 +1,26 @@
 import styled from 'styled-components';
 
+export const ShoppingCartTitle = styled.h2`
+  text-align: center;
+  margin: 20px 0;
+  font-size: 30px;
+  font-weight: 800;
+`;
+
+export const ShoppingCartWrap = styled.div`
+  display: flex;
+  padding: 20px 0px;
+  gap: 20px;
+  justify-content: space-between;
+`;
+export const OrderListWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 export const OrderList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 export const Button = styled.button`
   display: block;
@@ -15,7 +34,6 @@ export const CartItemWrap = styled.div`
   width: 100%;
   max-width: 280px;
   padding-bottom: 24px;
-  margin-right: 32px;
   background-color: #fff;
   transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease, 0 2px 32px 0 rgba(0, 0, 0, 0.12) 0.3s ease;
@@ -92,4 +110,27 @@ export const ButtonAddToOrder = styled.button`
 export const ButtonAddToOrderText = styled.p`
   font-size: 16px;
   font-weight: 600;
+`;
+export const ButtonDelete = styled.button`
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+`;
+export const TotalAmount = styled.h4`
+  font-size: 25px;
+  font-weight: 700;
+  color: blue;
+  margin-bottom: 20px;
+`;
+
+export const TotalAmountSpan = styled.span`
+  font-size: 25px;
+  font-weight: 700;
+  color: red;
+`;
+export const FormTitle = styled.h2`
+  font-size: 25px;
+  font-weight: 700;
+  color: inherit;
+  margin-bottom: 20px;
 `;

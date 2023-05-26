@@ -1,4 +1,6 @@
 import { Form, FormButton } from './CustomerForm.styled';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const { useState } = require('react');
 
@@ -28,46 +30,74 @@ export const CustomerForm = ({ onSubmit }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          label="Name:"
+          id="fullWidth1"
           type="text"
           name="name"
           value={customerData.name}
           onChange={handleInputChange}
           required
         />
-      </label>
-      <label>
-        Email:
-        <input
+      </Box>
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          label="Email"
+          id="fullWidth2"
           type="email"
           name="email"
           value={customerData.email}
           onChange={handleInputChange}
           required
         />
-      </label>
-      <label>
-        Phone:
-        <input
+      </Box>
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          label="Phone:"
+          id="fullWidth3"
           type="text"
           name="phone"
           value={customerData.phone}
           onChange={handleInputChange}
           required
         />
-      </label>
-      <label>
-        Address:
-        <input
+      </Box>
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          label="Address:"
+          id="fullWidth4"
           type="text"
           name="address"
           value={customerData.address}
           onChange={handleInputChange}
           required
         />
-      </label>
+      </Box>
       <FormButton type="submit">Place Order</FormButton>
     </Form>
   );
