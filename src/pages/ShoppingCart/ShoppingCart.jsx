@@ -16,6 +16,7 @@ import { decreaseItemFromOrder } from 'components/utils/decreaseItemFromOrder';
 import { CustomerForm } from 'components/utils/CustomerForm';
 import { createOrder } from 'components/API/createOrder ';
 import { CustomerFormSubmit } from 'components/utils/CustomerFormSubmit';
+import { deleteItemFromCart } from 'components/utils/deleteItemFromCart';
 
 export const ShoppingCart = () => {
   const savedOrder = localStorage.getItem('Order');
@@ -30,7 +31,8 @@ export const ShoppingCart = () => {
   };
 
   const handleDelete = item => {
-    removeItemFromOrder(item._id, setOrder, order);
+    deleteItemFromCart(item, setOrder, order);
+    localStorage.setItem('Order', JSON.stringify(order));
   };
 
   const handleDecrease = item => {
@@ -46,10 +48,6 @@ export const ShoppingCart = () => {
 
   const handleIncrease = item => {
     addToOrder(item, setOrder, order);
-  };
-
-  const handleSaveChanges = () => {
-    localStorage.setItem('Order', JSON.stringify(order));
   };
 
   useEffect(() => {
@@ -88,7 +86,9 @@ export const ShoppingCart = () => {
       clearCart
     );
   };
-
+  useEffect(() => {
+    localStorage.setItem('Order', JSON.stringify(order));
+  }, [order]);
   return (
     <>
       <h2>Shopping Cart</h2>
@@ -144,11 +144,6 @@ export const ShoppingCart = () => {
       {order.length === 0 ? null : (
         <CustomerForm onSubmit={handleCustomerFormSubmit} />
       )}
-
-      <Button type="button" onClick={handleSaveChanges}>
-        Save Changes
-      </Button>
-
       {order.length === 0 ? null : (
         <Button type="button" onClick={clearCart}>
           Clear

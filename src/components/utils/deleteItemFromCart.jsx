@@ -1,14 +1,6 @@
-export const deleteItemFromCart = (
-  item,
-  order,
-  setQuantity,
-  setCartUpdated,
-  quantity
-) => {
-  const updatedOrder = order.filter(orderItem => orderItem !== item);
-  const updatedQuantity = { ...quantity };
-  delete updatedQuantity[item];
-  localStorage.setItem('Order', JSON.stringify(updatedOrder));
-  setQuantity(updatedQuantity);
-  setCartUpdated(true);
+export const deleteItemFromCart = (item, setOrder, order) => {
+  const updatedOrder = order.filter(
+    orderItem => orderItem._id !== item._id.toString()
+  );
+  setOrder(updatedOrder);
 };
